@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
     {
         if(collision.gameObject.tag=="Block")
         {
-            GameManager.Instance.EndGame();
+            GameManager.Instance.EndGame(true);
         }
     }
 }

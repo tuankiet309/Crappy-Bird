@@ -9,6 +9,7 @@ public class BlockGenerator : MonoBehaviour
     [SerializeField] private float BlockSpeed;
     [SerializeField] private float GenerateTimer;
     [SerializeField] GameObject BlockToGenerate;
+    
     private float GenerateTimerCounter;
     void Start()
     {
@@ -21,7 +22,7 @@ public class BlockGenerator : MonoBehaviour
         GenerateTimerCounter -= Time.deltaTime;
         if(GenerateTimerCounter < 0 )
         {
-            Instantiate(BlockToGenerate, new Vector3(transform.position.x, Random.Range(Min.position.y,Max.position.y)), Quaternion.identity);
+            Instantiate(BlockToGenerate, new Vector3(transform.position.x, Random.Range(Min.position.y,Max.position.y)), Quaternion.identity,transform);
             GenerateTimerCounter = GenerateTimer;
         }
     }

@@ -15,7 +15,7 @@ public class BlockMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position -= new Vector3(moveSpeed,0,0);
+        transform.position -= new Vector3(moveSpeed*Time.deltaTime,0,0);
         if(Vector2.Distance(transform.position,Intaciate) >= distanceToDesTroy)
         {
             Destroy(transform.gameObject);

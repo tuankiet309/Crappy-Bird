@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    private State state;
     void Awake()
     {
         if (Instance == null) // If there is no instance already
@@ -19,8 +20,57 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject); // Destroy the GameObject, this component is attached to
         }
     }
-   public void EndGame()
+   
+    void Start()
     {
+        DefaultGame(true);
+    }
+    public void DefaultGame(bool state)
+    {
+        UIManager.Instance.SwicthStartMenu(state);
+        if (state == true)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+    }
+    public void PlayGame(bool state)
+    {
+        UIManager.Instance.SwicthPauseMenu(state);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void PauseGame(bool state)
+    {
+        UIManager.Instance.SwicthPauseMenu(state);
+        if(state==true)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+    }
+    public void EndGame(bool state)
+    {
+        if (state == true)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+        UIManager.Instance.EndMenu.SetActive(true);
+    }
+    public enum State
+    {
+        Default,
+        Play,
+        Pause,
+        End,
     }
 }
